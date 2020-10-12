@@ -524,10 +524,23 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
-          <e p="Installer.cs" t="Include" />
-          <e p="Test.cs" t="Include" />
-          <e p="Test2.cs" t="Include" />
-          <e p="Test3.cs" t="Include" />
+          <e p="GameController.cs" t="Include" />
+          <e p="Installers" t="Include">
+            <e p="GameInstaller.cs" t="Include" />
+            <e p="SoInstaller.cs" t="Include" />
+          </e>
+          <e p="PlayerWonSignal.cs" t="Include" />
+          <e p="ScriptableObjects" t="Include">
+            <e p="GameConfig.cs" t="Include" />
+          </e>
+          <e p="TimeController.cs" t="Include" />
+          <e p="UIController.cs" t="Include" />
+          <e p="UnitPositionController.cs" t="Include" />
+          <e p="Units" t="Include">
+            <e p="AbstractUnit.cs" t="Include" />
+            <e p="OpponentController.cs" t="Include" />
+            <e p="PlayerController.cs" t="Include" />
+          </e>
         </e>
       </e>
       <e p="obj" t="ExcludeRecursive" />
