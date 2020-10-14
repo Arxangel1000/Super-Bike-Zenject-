@@ -33,8 +33,12 @@ public class GameController : MonoBehaviour
 
     [Inject]
     private SignalBus _signalBus;
+    
 
     private bool stopSignal;
+
+    public GameObject _player;
+    public GameObject[] _opponents;
 
     private void Start()
     {
@@ -48,8 +52,11 @@ public class GameController : MonoBehaviour
         _uiController.ShowGamePanel();
         // создать игрока и противников
         CreateFinish();
+        _positionController.Reset();
         CreatePlayers();
         CreateOpponent();
+        _timeController.SetPauseOff();
+        stopSignal = false;
         // создать финиш
     }
 
@@ -87,22 +94,36 @@ public class GameController : MonoBehaviour
 
     private void CreateOpponent()
     {
+        if (_opponents == null)
+        {
+            _opponents = new GameObject[_gameConfig.opponentsCount];
+            for (int i = 0; i < _gameConfig.opponentsCount; i++)
+            {
+                _opponents[i] = _opponentFabrik.Create(Random.Range(
+                        _gameConfig.OpponentMinSpeed, _gameConfig.OpponentMaxSpeed),
+                    _gameConfig.finishPos.y, this).gameObject;
+            }
+        }
+
         for (int i = 0; i < _gameConfig.opponentsCount; i++)
         {
-            var opponent = _opponentFabrik.Create(Random.Range(
-                _gameConfig.OpponentMinSpeed, _gameConfig.OpponentMaxSpeed),
-                _gameConfig.finishPos.y, this);
-
-            opponent.transform.position = _positionController.GetNewPos();
+            _opponents[i].transform.position = _positionController.GetNewPos();
         }
     }
 
     private void CreatePlayers()
     {
-        var player = _playerFabrik.Create(
-            _gameConfig.playerSpeed, _gameConfig.finishPos.y, this);
+
+        if (_player == null)
+        {
+            _player = _playerFabrik.Create(
+                _gameConfig.playerSpeed, _gameConfig.finishPos.y, this).gameObject;
+        }
+            _player.transform.position = _positionController.GetNewPos();
+
+
         
-        player.transform.position = _positionController.GetNewPos();
+      
     }
 
     public void Restart()

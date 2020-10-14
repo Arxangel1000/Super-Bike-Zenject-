@@ -7,7 +7,7 @@ public class TimeController
         Time.timeScale = 0;
     }
     
-    public static void SetPauseOff()
+    public void SetPauseOff()
     {
         Time.timeScale = 1;
     }

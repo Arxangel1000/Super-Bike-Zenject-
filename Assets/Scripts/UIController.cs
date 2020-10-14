@@ -8,7 +8,8 @@ public class UIController : MonoBehaviour
     
     [Inject]
     private GameController _gameController;
-    
+
+    [Inject] private TimeController _timeController;
     #if UNITY_EDITOR
     private void OnValidate()
     {
@@ -20,7 +21,7 @@ public class UIController : MonoBehaviour
     private void Start()
     {
         Debug.Log(_gameController); 
-        TimeController.SetPauseOff();
+        _timeController.SetPauseOff();
     }
 
     public void ShowGamePanel() { _gamePanel.SetActive(true); }
