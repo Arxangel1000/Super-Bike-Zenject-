@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1943516aa3fb82a438889c319bbabca9, type: 3}
   m_Name: SoInstaller
   m_EditorClassIdentifier: 
-  _config: {fileID: 0}
+  _config: {fileID: 11400000, guid: 1451bbc788e889346882e1c4d958481d, type: 2}
+  _finishPrefab: {fileID: 3154572548040578575, guid: 965a07ef388dc89419eb52f54a4805fe,
+    type: 3}

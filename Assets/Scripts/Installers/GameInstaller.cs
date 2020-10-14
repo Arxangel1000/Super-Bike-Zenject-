@@ -1,4 +1,5 @@
-﻿using Zenject;
+﻿using Signals;
+using Zenject;
 
 public class GameInstaller : MonoInstaller
 {
@@ -18,8 +19,12 @@ public class GameInstaller : MonoInstaller
             .FromComponentInNewPrefab(_gameConfig.opponentPrefab)
             .WithGameObjectName("Enemy");
         
-        Container.DeclareSignal<PlayerWonSignal>();
-        Container.DeclareSignal<OpponentWonSignal>();
+        
+        SignalBusInstaller.Install(Container);
+
+        Container.DeclareSignal<PlayerWanSignal>();
+        Container.DeclareSignal<EnemyWanSignal>();
+        Container.BindInterfacesTo<PlayerWanSignalInitialize>().AsSingle();
         
     }
 }

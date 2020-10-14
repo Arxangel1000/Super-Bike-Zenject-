@@ -1,4 +1,7 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Runtime.InteropServices;
+using Signals;
 using UnityEditor;
 using UnityEngine;
 using Zenject;
@@ -29,26 +32,16 @@ public class GameController : MonoBehaviour
     private PlayerController.PlayerFabrik _playerFabrik;
 
     [Inject]
-    private PlayerWonSignal _playerWonSignal;
+    private SignalBus _signalBus;
 
-    [Inject]
-    private OpponentWonSignal _opponentWonSignal;
+    private bool stopSignal;
+
     private void Start()
     {
         _uiController.HideGamePanel();
-        _playerWonSignal.Subscribe<PlayerWonSignal>(EventMy);
-        _opponentWonSignal.Subscribe<OpponentWonSignal>(EventOpponent);
-        
+      
     }
-
-    public void EventMy(PlayerWonSignal signalData)
-    {
-        Debug.Log("Player signal!");
-    }
-    public void EventOpponent()
-    {
-        Debug.Log("Enemy signal!");
-    }
+    
     public void Play()
     {
         _uiController.HideMenuPanel();
@@ -57,10 +50,36 @@ public class GameController : MonoBehaviour
         CreateFinish();
         CreatePlayers();
         CreateOpponent();
-
         // создать финиш
     }
+
+    public void OnPlayerWanSignal()
+    {
+        if(!stopSignal)
+        {
+            Debug.Log("Hi i am a Player signal");
+            _timeController.SetPauseOn();
+            stopSignal = true;
+            OnGameEnd();
+        }
+    }
     
+    public void OnEnemyWanSignal()
+    {
+        if (!stopSignal)
+        {
+            Debug.Log("Hi i am a Enemy signal");
+            _timeController.SetPauseOn();
+            stopSignal = true;
+            OnGameEnd();
+        }
+    }
+
+    private void OnGameEnd()
+    {
+        _uiController.ShowMenuPanel();
+    }
+
     public void CreateFinish()
     {
         GameObject.Instantiate(_finishPrefab, _gameConfig.finishPos, Quaternion.identity);
@@ -100,6 +119,5 @@ public class GameController : MonoBehaviour
            Application.Quit();
         #endif
     }
-    
     
 }

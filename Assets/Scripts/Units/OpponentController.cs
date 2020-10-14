@@ -1,18 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Signals;
 using UnityEngine;
 using Zenject;
 
 public class OpponentController : AbstractUnit
 {
-    [Inject] private OpponentWonSignal _opponentWonSignal;
+    [Inject] 
+    private SignalBus _signalBus;
     
     protected override void Move()
     {
         transform.Translate(Vector3.right * _speed * Time.deltaTime);
         if (transform.position.y > _finishPos)
         {
-            _opponentWonSignal.Fire<OpponentWonSignal>();
+            _signalBus.Fire<EnemyWanSignal>();
         }
         
     }

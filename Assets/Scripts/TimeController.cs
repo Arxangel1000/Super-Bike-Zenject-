@@ -2,7 +2,7 @@
 
 public class TimeController 
 {
-    public static void SetPauseOn()
+    public void SetPauseOn()
     {
         Time.timeScale = 0;
     }
