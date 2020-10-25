@@ -48,6 +48,7 @@ public class GameController : MonoBehaviour
     
     public void Play()
     {
+        _uiController.WinBoarderOFF();
         _uiController.HideMenuPanel();
         _uiController.ShowGamePanel();
         // создать игрока и противников
@@ -65,6 +66,7 @@ public class GameController : MonoBehaviour
         if(!stopSignal)
         {
             Debug.Log("Player is win");
+            _uiController.WinBoarderOn("игрок");
             _timeController.SetPauseOn();
             stopSignal = true;
             OnGameEnd();
@@ -76,6 +78,7 @@ public class GameController : MonoBehaviour
         if (!stopSignal)
         {
             Debug.Log("Enemy is win");
+            _uiController.WinBoarderOn("противник");
             _timeController.SetPauseOn();
             stopSignal = true;
             OnGameEnd();

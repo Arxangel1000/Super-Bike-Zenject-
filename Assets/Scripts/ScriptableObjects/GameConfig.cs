@@ -18,5 +18,5 @@ public class GameConfig : ScriptableObject
     public GameObject opponentPrefab;
 
     public int opponentsCount;
-
+    
 }

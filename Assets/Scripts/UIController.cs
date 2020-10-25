@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 public class UIController : MonoBehaviour
 {
     [SerializeField] private GameObject _gamePanel;
     [SerializeField] private GameObject _menuPanel;
+    [SerializeField] private GameObject WinBoarder;
     
     [Inject]
     private GameController _gameController;
@@ -45,5 +47,16 @@ public class UIController : MonoBehaviour
     public void OnRestartButtonClicked()
     {
         _gameController.Restart();
+    }
+
+    public void WinBoarderOn(string whoWin)
+    {
+        WinBoarder.SetActive(true);
+        WinBoarder.GetComponentInChildren<Text>().text = "Победил " + whoWin;
+    }
+    
+    public void WinBoarderOFF()
+    {
+        WinBoarder.SetActive(false);
     }
 }
