@@ -745,7 +745,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c1b367bbe7d20146af5c7febedc5f2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  t: 0
 --- !u!1 &989452229
 GameObject:
   m_ObjectHideFlags: 0
@@ -1185,6 +1184,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanMove: 1
+  _player: {fileID: 0}
+  _opponents: []
 --- !u!4 &1943259418
 Transform:
   m_ObjectHideFlags: 0

@@ -64,7 +64,7 @@ public class GameController : MonoBehaviour
     {
         if(!stopSignal)
         {
-            Debug.Log("Hi i am a Player signal");
+            Debug.Log("Player is win");
             _timeController.SetPauseOn();
             stopSignal = true;
             OnGameEnd();
@@ -75,7 +75,7 @@ public class GameController : MonoBehaviour
     {
         if (!stopSignal)
         {
-            Debug.Log("Hi i am a Enemy signal");
+            Debug.Log("Enemy is win");
             _timeController.SetPauseOn();
             stopSignal = true;
             OnGameEnd();
@@ -94,7 +94,7 @@ public class GameController : MonoBehaviour
 
     private void CreateOpponent()
     {
-        if (_opponents == null)
+        if (_opponents.Length == 0)
         {
             _opponents = new GameObject[_gameConfig.opponentsCount];
             for (int i = 0; i < _gameConfig.opponentsCount; i++)

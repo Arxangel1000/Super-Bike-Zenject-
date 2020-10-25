@@ -11,7 +11,7 @@ public class OpponentController : AbstractUnit
     
     protected override void Move()
     {
-        transform.Translate(Vector3.right * _speed * Time.deltaTime);
+        transform.Translate(Vector3.up * _speed * Time.deltaTime);
         if (transform.position.y > _finishPos)
         {
             _signalBus.Fire<EnemyWanSignal>();

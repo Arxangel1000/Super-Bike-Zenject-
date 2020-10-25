@@ -12,7 +12,7 @@ public class PlayerController : AbstractUnit
          
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
-            transform.Translate(Vector3.right * _speed * Time.deltaTime);
+            transform.Translate(Vector3.up* _speed * Time.deltaTime);
             if (transform.position.y > _finishPos)
             {
                 _signalBus.Fire<PlayerWanSignal>();
